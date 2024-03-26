@@ -59,14 +59,12 @@ interface IReqInvitationJSON {
     };
     relationship: string;
   };
-  road: {
-    subway: IEditorState[];
-    bus: IEditorState[];
-    car: IEditorState[];
-    etc: {
-      transport_type: string;
-      info: IEditorState[];
-    };
+  subway: IEditorState[];
+  bus: IEditorState[];
+  car: IEditorState[];
+  etc: {
+    transport_type: string;
+    info: IEditorState[];
   };
   open_graph: {
     title: string;

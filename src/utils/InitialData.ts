@@ -61,14 +61,12 @@ const InitialData_CreateInvitationJSON: IReqInvitationJSON = {
     },
     relationship: "",
   },
-  road: {
-    subway: [],
-    bus: [],
-    car: [],
-    etc: {
-      transport_type: "",
-      info: [],
-    },
+  subway: [],
+  bus: [],
+  car: [],
+  etc: {
+    transport_type: "",
+    info: [],
   },
   open_graph: {
     title: "",
