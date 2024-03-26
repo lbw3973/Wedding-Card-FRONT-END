@@ -352,7 +352,7 @@ const Modern = () => {
         </div>
         <div className="d-day">
           <p>
-            {MockData.HUSBAND.ME.name} <FcLike /> {MockData.WIFE.ME.name}의 결혼식이{" "}
+            {MockData.HUSBAND.ME.name} <FcLike /> {MockData.WIFE.ME.name}의 결혼식이&nbsp;
             <span>{getDday(new Date(MockData.date))}일</span> 남았습니다.
           </p>
         </div>
@@ -455,7 +455,7 @@ const Modern = () => {
       <S.Page11Way ref={addItemRef} className="observer">
         <div>
           <p className="title">지하철안내</p>
-          {MockData.road.subway.map(({ text, inline_style }, index) => (
+          {MockData.subway.map(({ text, inline_style }, index) => (
             <p className="info" key={index}>
               {applyStyles(text, inline_style)}
             </p>
@@ -463,7 +463,7 @@ const Modern = () => {
         </div>
         <div>
           <p className="title">버스안내</p>
-          {MockData.road.bus.map(({ text, inline_style }, index) => (
+          {MockData.bus.map(({ text, inline_style }, index) => (
             <p className="info" key={index}>
               {applyStyles(text, inline_style)}
             </p>
@@ -471,7 +471,7 @@ const Modern = () => {
         </div>
         <div>
           <p className="title">주차안내</p>
-          {MockData.road.car.map(({ text, inline_style }, index) => (
+          {MockData.car.map(({ text, inline_style }, index) => (
             <p className="info" key={index}>
               {applyStyles(text, inline_style)}
             </p>
@@ -479,7 +479,7 @@ const Modern = () => {
         </div>
         <div>
           <p className="title">전세버스안내</p>
-          {MockData.road.etc.info.map(({ text, inline_style }, index) => (
+          {MockData.etc.info.map(({ text, inline_style }, index) => (
             <p className="info" key={index}>
               {applyStyles(text, inline_style)}
             </p>
@@ -509,13 +509,11 @@ const Modern = () => {
               <div>
                 {accountInfo ? (
                   <>
-                    {" "}
                     <p>{MockData.HUSBAND.FATHER.bank}은행</p>
                     <p>예금주 : {MockData.HUSBAND.FATHER.name}</p>
                   </>
                 ) : (
                   <>
-                    {" "}
                     <p>{MockData.WIFE.FATHER.bank}은행</p>
                     <p>예금주 : {MockData.WIFE.FATHER.name}</p>
                   </>
@@ -540,13 +538,11 @@ const Modern = () => {
               <div>
                 {accountInfo ? (
                   <>
-                    {" "}
                     <p>{MockData.HUSBAND.MOTHER.bank}은행</p>
                     <p>예금주 : {MockData.HUSBAND.MOTHER.name}</p>
                   </>
                 ) : (
                   <>
-                    {" "}
                     <p>{MockData.WIFE.MOTHER.bank}은행</p>
                     <p>예금주 : {MockData.WIFE.MOTHER.name}</p>
                   </>

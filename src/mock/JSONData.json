@@ -112,75 +112,73 @@
     },
     "relationship": "차녀"
   },
-  "road": {
-    "subway": [
-      {
-        "text": "[수인분당선] 수원시청역 2번출구 도보 3분",
-        "inline_style": [
-          {
-            "offset": 8,
-            "length": 5,
-            "style": "BOLD"
-          }
-        ]
-      }
-    ],
-    "bus": [
-      {
-        "text": "수원역 매산시장 정류장",
-        "inline_style": [
-          {
-            "offset": 0,
-            "length": 12,
-            "style": "BOLD"
-          }
-        ]
-      },
-      {
-        "text": "92, 92-1",
-        "inline_style": []
-      }
-    ],
-    "car": [
-      {
-        "text": "이비스호텔 수원점 주차장 2시간 무료 이용가능",
-        "inline_style": []
-      },
-      {
-        "text": "안내 데스크에서 주차권 수령",
-        "inline_style": [
-          {
-            "offset": 9,
-            "length": 3,
-            "style": "BOLD"
-          },
-          {
-            "offset": 9,
-            "length": 3,
-            "style": "UNDERLINE"
-          }
-        ]
-      }
-    ],
-    "etc": {
-      "transport_type": "전세버스",
-      "info": [
+  "subway": [
+    {
+      "text": "[수인분당선] 수원시청역 2번출구 도보 3분",
+      "inline_style": [
         {
-          "text": "천안 버스터미널에서 오전 9시 30분",
-          "inline_style": [
-            {
-              "offset": 11,
-              "length": 9,
-              "style": "BOLD"
-            }
-          ]
-        },
-        {
-          "text": "혼주에게 미리 연락해주셔야 합니다",
-          "inline_style": []
+          "offset": 8,
+          "length": 5,
+          "style": "BOLD"
         }
       ]
     }
+  ],
+  "bus": [
+    {
+      "text": "수원역 매산시장 정류장",
+      "inline_style": [
+        {
+          "offset": 0,
+          "length": 12,
+          "style": "BOLD"
+        }
+      ]
+    },
+    {
+      "text": "92, 92-1",
+      "inline_style": []
+    }
+  ],
+  "car": [
+    {
+      "text": "이비스호텔 수원점 주차장 2시간 무료 이용가능",
+      "inline_style": []
+    },
+    {
+      "text": "안내 데스크에서 주차권 수령",
+      "inline_style": [
+        {
+          "offset": 9,
+          "length": 3,
+          "style": "BOLD"
+        },
+        {
+          "offset": 9,
+          "length": 3,
+          "style": "UNDERLINE"
+        }
+      ]
+    }
+  ],
+  "etc": {
+    "transport_type": "전세버스",
+    "info": [
+      {
+        "text": "천안 버스터미널에서 오전 9시 30분",
+        "inline_style": [
+          {
+            "offset": 11,
+            "length": 9,
+            "style": "BOLD"
+          }
+        ]
+      },
+      {
+        "text": "혼주에게 미리 연락해주셔야 합니다",
+        "inline_style": []
+      }
+    ]
   },
   "open_graph": {
     "title": "김신랑 ♡ 김신부",
