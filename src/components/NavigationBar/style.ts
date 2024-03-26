@@ -11,7 +11,7 @@ export const NavContainer = styled.nav`
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: 70px; */
+  grid-template-rows: 70px;
 
   font-size: 14px;
   z-index: 10000;
