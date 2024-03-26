@@ -83,7 +83,6 @@ const Information = () => {
       <YoutubeVideo />
       <LiveWedding />
       <ShareKakao />
-      {/* <Test /> */}
       <TempSaveButton FuncOnClick={handleClickTempSave} />
       <NextStepButton ArrowDirection="left" FuncOnClick={handleClickLeft} />
       <NextStepButton ArrowDirection="right" FuncOnClick={handleClickRight} />
