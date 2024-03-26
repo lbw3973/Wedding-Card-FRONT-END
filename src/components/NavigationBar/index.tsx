@@ -10,8 +10,6 @@ const NavigationBar = () => {
   const [searchState, setSearchState] = useState(false);
   const isLogined = useRecoilValue(LoginState);
 
-  console.log(isLogined);
-
   const clickSearch = () => {
     setSearchState(!searchState);
   };
