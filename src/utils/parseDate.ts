@@ -66,6 +66,8 @@ export const tileClassName = ({ date, view }: { date: Date; view: string }) => {
   if (view === "month") {
     if (date.getDay() === 6) {
       return "saturday";
+    } else if (date.getDay() === 0) {
+      return "sunday";
     }
   }
 };

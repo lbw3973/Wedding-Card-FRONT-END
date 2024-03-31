@@ -7,6 +7,7 @@ export const NavContainer = styled.nav`
   max-width: 768px;
   width: 100%;
   background-color: #f5f5dc;
+  border-top: 1px solid #ccc;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -18,6 +19,9 @@ export const NavContainer = styled.nav`
   div {
     position: relative;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &::after {
       content: "";
@@ -35,50 +39,31 @@ export const NavContainer = styled.nav`
   }
 `;
 
-export const SearchDiv = styled.div`
-  position: relative;
-`;
-
-export const SearchButton = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-
-  font-size: 14px;
-  background-color: transparent;
-  cursor: pointer;
-
-  border-radius: 12px;
-  transition-duration: 300ms;
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: #dbdbc5;
-    }
-  }
-`;
-
 export const NavLinkEl = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
+  padding: 4px 0;
 
   border-radius: 12px;
   transition-duration: 300ms;
 
   @media (hover: hover) {
     &:hover {
-      background-color: #dbdbc5;
+      background-color: #eaeadc;
     }
   }
 
   img {
     width: 100%;
     height: 100%;
+  }
+
+  span {
+    font-size: 14px;
+    margin-top: 6px;
   }
 `;

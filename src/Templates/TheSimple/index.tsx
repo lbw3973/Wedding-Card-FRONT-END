@@ -355,7 +355,7 @@ const TheSimple = () => {
             <span>버스로 오시는길</span>
           </div>
           <div className="description">
-            {sampleData.road.bus.map(({ text, inline_style }, index) => (
+            {sampleData.bus.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -368,7 +368,7 @@ const TheSimple = () => {
             <span>지하철로 오시는길</span>
           </div>
           <div className="description">
-            {sampleData.road.subway.map(({ text, inline_style }, index) => (
+            {sampleData.subway.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -381,7 +381,7 @@ const TheSimple = () => {
             <span>자가용으로 오시는길</span>
           </div>
           <div className="description">
-            {sampleData.road.car.map(({ text, inline_style }, index) => (
+            {sampleData.car.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -391,10 +391,10 @@ const TheSimple = () => {
             <div className="icon">
               <IoBalloonOutline size={30} color="#ab9da1" />
             </div>
-            <span>{sampleData.road.etc.transport_type}</span>
+            <span>{sampleData.etc.transport_type}</span>
           </div>
           <div className="description">
-            {sampleData.road.etc.info.map(({ text, inline_style }, index) => (
+            {sampleData.etc.info.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>

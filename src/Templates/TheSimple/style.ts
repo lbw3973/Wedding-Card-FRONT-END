@@ -160,6 +160,7 @@ export const HumanWrapper = styled.div`
     border: 1px solid #cec3c3;
     padding: 10px 80px;
     border-radius: 32px;
+    color: #242424;
 
     svg {
       margin-right: 10px;
@@ -189,7 +190,7 @@ export const CalendarWrapper = styled.div`
   .calendar {
     .react-calendar {
       margin: 30px auto;
-      padding: 20px 0;
+      padding: 20px;
       border: 1px solid #e8dfdf;
       border-left: none;
       border-right: none;
@@ -207,6 +208,10 @@ export const CalendarWrapper = styled.div`
       .react-calendar__tile {
         pointer-events: none;
         padding: 10px;
+        color: #242424;
+      }
+      .sunday {
+        color: red;
       }
       .react-calendar__tile--active {
         background-color: #cec3c3;
@@ -219,8 +224,10 @@ export const CalendarWrapper = styled.div`
       .saturday {
         color: inherit;
       }
-      .react-calendar__month-view__weekdays abbr[title="일요일"] {
-        color: red;
+      .react-calendar__month-view__weekdays {
+        abbr[title="일요일"] {
+          color: red;
+        }
       }
       .react-calendar__month-view__days__day--neighboringMonth {
         visibility: hidden;

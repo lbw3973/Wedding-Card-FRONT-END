@@ -46,7 +46,7 @@ export const SwiperImage = styled.img`
   object-fit: contain;
 `;
 
-export const SwiperImageTag = styled.p<{ animate: boolean }>`
+export const SwiperImageTag = styled.p`
   position: absolute;
   opacity: 0;
   transform: translateY(100%);
@@ -57,10 +57,8 @@ export const SwiperImageTag = styled.p<{ animate: boolean }>`
   font-size: 30px;
   font-weight: 700;
 
-  ${props =>
-    props.animate &&
-    `
+  &.animate {
     opacity: 1;
     transform: translateY(0%);
-  `}
+  }
 `;

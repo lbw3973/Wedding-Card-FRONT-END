@@ -105,12 +105,9 @@ const WeddingSchedule = () => {
   const handleChangeEtcType = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvitationData(previousData => ({
       ...previousData,
-      road: {
-        ...previousData.road,
-        etc: {
-          ...previousData.road.etc,
-          transport_type: e.target.value,
-        },
+      etc: {
+        ...previousData.etc,
+        transport_type: e.target.value,
       },
     }));
   };
@@ -122,27 +119,9 @@ const WeddingSchedule = () => {
       if (key === "etc") {
         setInvitationData(previousData => ({
           ...previousData,
-          road: {
-            ...previousData.road,
-            etc: {
-              ...previousData.road.etc,
-              info: states[index].blocks.map(state => ({
-                text: state.text,
-                inline_style: state.inlineStyleRanges.map(inlineStyle => ({
-                  offset: inlineStyle.offset,
-                  length: inlineStyle.length,
-                  style: inlineStyle.style,
-                })),
-              })),
-            },
-          },
-        }));
-      } else {
-        setInvitationData(previousData => ({
-          ...previousData,
-          road: {
-            ...previousData.road,
-            [key]: states[index].blocks.map(state => ({
+          etc: {
+            ...previousData.etc,
+            info: states[index].blocks.map(state => ({
               text: state.text,
               inline_style: state.inlineStyleRanges.map(inlineStyle => ({
                 offset: inlineStyle.offset,
@@ -151,6 +130,18 @@ const WeddingSchedule = () => {
               })),
             })),
           },
+        }));
+      } else {
+        setInvitationData(previousData => ({
+          ...previousData,
+          [key]: states[index].blocks.map(state => ({
+            text: state.text,
+            inline_style: state.inlineStyleRanges.map(inlineStyle => ({
+              offset: inlineStyle.offset,
+              length: inlineStyle.length,
+              style: inlineStyle.style,
+            })),
+          })),
         }));
       }
     });

@@ -1,12 +1,15 @@
+import { LoginState } from "@/stores/LoginStateStore";
 import { setCookie } from "@/utils/cookie";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 
 let isMount = false;
 
 const Auth = () => {
   const navigate = useNavigate();
+  const setIsLogined = useSetRecoilState(LoginState);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,7 +40,8 @@ const Auth = () => {
     const { data } = response;
     const { access_token } = data;
     setCookie("WECA_access_token", access_token);
-    navigate("/");
+    setIsLogined(true);
+    navigate("/mypage");
   };
 
   return <></>;

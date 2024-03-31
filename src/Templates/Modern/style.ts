@@ -1,5 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { SwiperSlide } from "swiper/react";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -7,6 +18,16 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  font-family: "GowunDodum";
+  position: relative;
+  overflow: hidden;
+  .observer {
+    &.visible {
+      animation: ${fadeIn} 1.5s ease-out forwards;
+    }
+    opacity: 0;
+  }
 `;
 export const Page1Div = styled.div`
   display: flex;
@@ -90,25 +111,23 @@ export const Page4Div = styled.div`
     align-items: center;
     gap: 10px;
     margin-bottom: 30px;
-
-    button {
-      &:nth-child(2) {
-        background-color: #7e7;
-      }
-    }
   }
   button {
-    background-color: #78c0e9;
     border-radius: 50%;
     padding: 10px;
     border: none;
     width: 40px;
     height: 40px;
-
     svg {
       width: 20px;
       height: 20px;
     }
+  }
+  .call {
+    background-color: #7e7;
+  }
+  .message {
+    background-color: #78c0e9;
   }
 `;
 
@@ -117,7 +136,7 @@ export const Page5Div = styled.div`
   p {
     width: 100%;
     height: 40px;
-    background-color: #f4f4f4;
+    background-color: #fafafa;
     text-align: center;
     line-height: 40px;
     margin-bottom: 2rem;
@@ -131,7 +150,12 @@ export const Page5Data = styled.div`
     width: 20px;
     height: 20px;
   }
-
+  .call {
+    background-color: #7e7;
+  }
+  .message {
+    background-color: #78c0e9;
+  }
   div {
     width: 40%;
     display: flex;
@@ -169,7 +193,6 @@ export const Page5Data = styled.div`
         justify-content: center;
 
         button {
-          background-color: #78c0e9;
           border-radius: 50%;
           padding: 10px;
           border: none;
@@ -183,19 +206,17 @@ export const Page5Data = styled.div`
         }
       }
     }
-    button {
-      &:nth-child(1) {
-        background-color: #7e7;
-      }
-    }
   }
 `;
 
 export const Page6CalendarWrapper = styled.div`
-  padding: 80px 0;
-  background-color: #f6f5f5;
+  padding: 80px 20px;
+  background-color: #fafafa;
   margin: 20px 0;
 
+  .d-day {
+    text-align: center;
+  }
   .date {
     color: #524548;
     display: flex;
@@ -221,7 +242,7 @@ export const Page6CalendarWrapper = styled.div`
       border: 1px solid #e8dfdf;
       border-left: none;
       border-right: none;
-      background-color: transparent;
+      background-color: #fafafa;
       abbr {
         font-weight: 400;
         font-size: 16px;
@@ -243,8 +264,11 @@ export const Page6CalendarWrapper = styled.div`
           color: white;
         }
       }
+      .react-calendar__month-view__weekdays__weekday--weekend {
+        color: blue;
+      }
       .saturday {
-        color: inherit;
+        color: blue;
       }
       .react-calendar__month-view__weekdays abbr[title="일요일"] {
         color: red;
@@ -255,6 +279,9 @@ export const Page6CalendarWrapper = styled.div`
       .react-calendar__month-view__days {
         height: 300px;
       }
+    }
+    .react-calendar__month-view__days__day--weekend {
+      color: red;
     }
   }
 
@@ -288,7 +315,7 @@ export const SwiperBottom = styled.div`
     text-align: center;
     height: 65px;
     display: flex;
-
+    cursor: pointer;
     img {
       width: 65px;
       height: 65px;
@@ -313,6 +340,12 @@ export const SwiperTop = styled.div`
     width: 343px;
     height: 343px;
     text-align: center;
+    cursor: pointer;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 export const SwiperSlideComponent = styled(SwiperSlide)<{ $opacity: boolean }>`
@@ -320,11 +353,16 @@ export const SwiperSlideComponent = styled(SwiperSlide)<{ $opacity: boolean }>`
 `;
 
 export const Page8YouTube = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-bottom: 80px;
+  box-sizing: border-box;
+  .youtube {
+    height: 300px;
+  }
   p {
     width: 80%;
     display: block;
@@ -388,7 +426,7 @@ export const Page10Map = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 80px 0;
+  margin: 80px 0 20px 0;
 
   .title {
     width: 80%;
@@ -400,9 +438,8 @@ export const Page10Map = styled.div`
     padding-top: 20px;
   }
 
-  div {
+  .address {
     width: 100%;
-    height: 60px;
     padding: 10px 20px;
     position: relative;
     box-sizing: border-box;
@@ -410,11 +447,312 @@ export const Page10Map = styled.div`
 
     h1 {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 600;
       margin-bottom: 10px;
     }
     p {
       color: #aaa;
     }
+  }
+  .roadmap {
+    width: 100%;
+    background-color: #fafafa;
+    .map-container {
+      width: 90%;
+    }
+  }
+  .roadmap-nav {
+    background-color: #fafafa;
+    width: 100%;
+    height: 42px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+
+    div {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      border-right: 1px solid rgba(97, 80, 67, 0.2);
+
+      &:last-child {
+        border: none;
+      }
+
+      img {
+        width: 16px;
+      }
+    }
+  }
+`;
+
+export const Page11Way = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 80px;
+  div {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .title {
+      font-size: large;
+      font-weight: 600;
+      line-height: 25px;
+      margin-bottom: 10px;
+    }
+    .info {
+      color: #999;
+    }
+  }
+`;
+
+export const Page12Account = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .title {
+    width: 80%;
+    display: block;
+    border-top: 2px solid #aaa;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+  }
+  .text {
+    margin-bottom: 50px;
+  }
+  div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      line-height: 50px;
+    }
+
+    button {
+      width: 150px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: #aaa;
+      color: #fafafa;
+    }
+  }
+`;
+
+export const AccountModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 450px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  box-sizing: border-box;
+  div {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    position: relative;
+    .close {
+      position: absolute;
+      right: 0;
+      top: 7px;
+      width: 40px;
+      height: 40px;
+      z-index: 2;
+      cursor: pointer;
+      path {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        display: flex;
+        width: 80%;
+        height: 30px;
+        flex-direction: row;
+        justify-content: space-between;
+
+        input {
+          width: 80%;
+          border-radius: 0px;
+          border-right: none;
+          height: 25px;
+        }
+        button {
+          width: 20%;
+          height: 29px;
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+`;
+
+export const Page13Message = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+  box-sizing: border-box;
+  .title {
+    width: 80%;
+    display: block;
+    border-top: 2px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+  }
+  .write {
+    margin-top: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    input {
+      width: 47%;
+      height: 35px;
+      padding-left: 5px;
+    }
+    div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      min-height: 50px;
+      max-height: 150px;
+      padding: 0px;
+      resize: vertical;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+  }
+  button {
+    width: 90%;
+    background-color: #333;
+    color: #fafafa;
+    margin-top: 10px;
+    height: 35px;
+    border-radius: 5px;
+  }
+  .guestbook-wrapper {
+    width: 90%;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    position: relative;
+    div {
+      display: flex;
+
+      h2 {
+        font-weight: 700;
+        line-height: 30px;
+        margin-right: 10px;
+      }
+      span {
+        font-size: small;
+        line-height: 30px;
+      }
+    }
+    p {
+      width: 80%;
+    }
+    .close {
+      position: absolute;
+      top: 23px;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background-color: #333;
+      border-radius: 5px;
+      cursor: pointer;
+      svg {
+        width: 30px;
+        height: 30px;
+        color: white;
+      }
+    }
+  }
+  .pagination {
+    margin: 20px 0;
+  }
+`;
+
+export const GuestBookPaginationSpan = styled.span<{ $isActiveIndex: boolean }>`
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+  cursor: pointer;
+  color: #89757a;
+  opacity: ${({ $isActiveIndex }) => ($isActiveIndex ? 1 : 0.35)};
+  font-weight: ${({ $isActiveIndex }) => ($isActiveIndex ? "600" : "400")};
+`;
+
+export const Page14Share = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    width: 80%;
+    display: block;
+    border-top: 2px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+  }
+  div {
+    display: flex;
+    margin: 10px;
+    div {
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .wrapper {
+    cursor: pointer;
+  }
+  .copyright {
+    color: #ccc;
+    margin: 20px 0;
   }
 `;

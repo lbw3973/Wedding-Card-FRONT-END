@@ -34,7 +34,9 @@ const MainSwiper = () => {
         {images.map((img, index) => (
           <SwiperSlide key={index} className="swiperslide">
             <S.SwiperImage src={img} alt="" />
-            <S.SwiperImageTag animate={currentAnimationIndex === index}>{imgName[index]}</S.SwiperImageTag>
+            <S.SwiperImageTag className={currentAnimationIndex === index ? "animate" : ""}>
+              {imgName[index]}
+            </S.SwiperImageTag>
           </SwiperSlide>
         ))}
         <span>
