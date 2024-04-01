@@ -8,16 +8,24 @@ import { useSetRecoilState } from "recoil";
 import { invitationJSONState } from "@/stores/createInvitationJSONStore";
 
 const Greeting = () => {
-  const [textAlign, setTextAlign] = useState<DraftTextAlignment>("left");
+  const [textAlign, setTextAlign] = useState<DraftTextAlignment>("center");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const setInvitationData = useSetRecoilState(invitationJSONState);
 
   const chageTextAlign = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.id.split("-")[1] as DraftTextAlignment;
     setTextAlign(value);
+
+    let postValue = "center";
+    if (value === "left") {
+      postValue = "start";
+    } else if (value === "right") {
+      postValue = "end";
+    }
+
     setInvitationData(previousData => ({
       ...previousData,
-      welcome_align: value,
+      welcome_align: postValue,
     }));
   };
 

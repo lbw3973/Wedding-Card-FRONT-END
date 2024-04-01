@@ -9,7 +9,7 @@ const InitialData_CreateInvitationJSON: IReqInvitationJSON = {
     longitude: 127.031397,
   },
   welcome: [],
-  welcome_align: "left",
+  welcome_align: "center",
   contents: {
     video_id: "",
     bgm: 0,

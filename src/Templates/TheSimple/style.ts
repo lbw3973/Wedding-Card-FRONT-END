@@ -124,7 +124,7 @@ export const GreetingWrapper = styled.div<{ $textAlign: string }>`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: ${({ $textAlign }) => ($textAlign === "left" ? "start" : $textAlign === "center" ? "center" : "end")};
+    align-items: ${({ $textAlign }) => $textAlign};
     justify-content: center;
     gap: 24px;
     font-family: "GowunDodum", serif;

@@ -62,7 +62,7 @@ export const JSONData: IReqInvitationJSON = {
       ],
     },
   ],
-  welcome_align: "left",
+  welcome_align: "center",
   contents: {
     bgm: 2,
     effect: 1,

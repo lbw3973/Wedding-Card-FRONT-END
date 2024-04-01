@@ -7,7 +7,7 @@ interface IReqInvitationJSON {
     longitude: number;
   };
   welcome: IEditorState[];
-  welcome_align: DraftTextAlignment;
+  welcome_align: string;
   contents: {
     video_id: string;
     bgm: number;
@@ -96,11 +96,12 @@ type DraftTextAlignment = "left" | "center" | "right";
 
 interface IResInvitation extends IReqInvitationJSON {
   template_id: number;
-  images: {
-    main: string;
-    thumbnail: string;
-    slides: string[];
-  };
+  // images: {
+  //   main: string;
+  //   thumbnail: string;
+  //   slides: string[];
+  // };
+  images: string[];
 }
 
 export type {

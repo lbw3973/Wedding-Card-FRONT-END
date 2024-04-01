@@ -135,7 +135,7 @@ const TheSimple = (data: IResInvitation) => {
     shareKakao({
       title: data.open_graph.title,
       description: data.open_graph.subtitle,
-      imageUrl: `${import.meta.env.VITE_AWS_S3_URL}/${data.images.thumbnail}`,
+      imageUrl: `${import.meta.env.VITE_AWS_S3_URL}/${data.images[1]}`,
       link: window.location.href,
     });
   };
@@ -236,7 +236,7 @@ const TheSimple = (data: IResInvitation) => {
           </div>
         </div>
         <div className="main-image">
-          <img src={`${import.meta.env.VITE_AWS_S3_URL}/${data.images.main}`} />
+          <img src={`${import.meta.env.VITE_AWS_S3_URL}/${data.images[0]}`} />
           <div className="background-video">
             <video muted autoPlay loop playsInline>
               <source src={Effects[data.contents.effect - 1]} type="video/mp4" />
