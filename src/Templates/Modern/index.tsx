@@ -22,6 +22,7 @@ import YouTube from "react-youtube";
 import { shareKakao } from "@/utils/shareKakao";
 import SwiperModal from "@/components/Template/SwiperModal";
 import galleryImages from "@/mock/GalleryImages.json";
+import { IResInvitation } from "@/types/invitation";
 
 const tileClassName = ({ date, view }: { date: Date; view: string }) => {
   if (view === "month") {
@@ -35,7 +36,8 @@ const formatDay = (_locale: string | undefined, date: Date) => {
   return date.getDate().toString();
 };
 
-const Modern = () => {
+const Modern = (data: IResInvitation) => {
+  console.log(data);
   const date = getDateMonthDay(new Date(MockData.date));
   const [topSwiper, setTopSwiper] = useState<SwiperCore | null>(null);
   const [bottomSwiper, setBottomSwiper] = useState<SwiperCore | null>(null);

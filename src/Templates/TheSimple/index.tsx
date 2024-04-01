@@ -12,7 +12,6 @@ import {
 import { TbMailHeart } from "react-icons/tb";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { HiOutlineLink } from "react-icons/hi";
-import sampleData from "@/mock/JSONData.json";
 import guestBook from "@/mock/GuestBook.json";
 import galleryImages from "@/mock/GalleryImages.json";
 import { FcLike } from "react-icons/fc";
@@ -39,12 +38,12 @@ import { shareKakao } from "@/utils/shareKakao";
 import { copyLink } from "@/utils/copyLink";
 import YouTube from "react-youtube";
 import { Effects } from "@/constants/ContentsData";
-
+import { IResInvitation } from "@/types/invitation";
 window.YTConfig = {
   host: "https://www.youtube.com",
 };
 
-const TheSimple = () => {
+const TheSimple = (data: IResInvitation) => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [currentGuestBookPage, setCurrentGuestBookPage] = useState(1);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
@@ -95,17 +94,16 @@ const TheSimple = () => {
     while (target !== null && target.id === "") {
       target = target.parentNode as HTMLElement;
     }
-    console.log(target);
     let url = "";
     switch (target.id) {
       case "naver":
-        url = `https://map.naver.com/v5/search/${encodeURIComponent(sampleData.location.address)}`;
+        url = `https://map.naver.com/v5/search/${encodeURIComponent(data.location.address)}`;
         break;
       case "kakao":
-        url = `https://map.kakao.com/?q=${encodeURIComponent(sampleData.location.address)}`;
+        url = `https://map.kakao.com/?q=${encodeURIComponent(data.location.address)}`;
         break;
       case "tmap":
-        url = `https://apis.openapi.sk.com/tmap/app/routes?appKey=${import.meta.env.VITE_TMAP_APP_KEY}&name=${sampleData.location.address}&lon=${sampleData.location.longitude}&lat=${sampleData.location.latitude}`;
+        url = `https://apis.openapi.sk.com/tmap/app/routes?appKey=${import.meta.env.VITE_TMAP_APP_KEY}&name=${data.location.address}&lon=${data.location.longitude}&lat=${data.location.latitude}`;
         break;
       default:
         return;
@@ -135,9 +133,9 @@ const TheSimple = () => {
 
   const handleClickShareKakao = () => {
     shareKakao({
-      title: sampleData.open_graph.title,
-      description: sampleData.open_graph.subtitle,
-      imageUrl: "https://avatars.githubusercontent.com/u/75530371?v=4",
+      title: data.open_graph.title,
+      description: data.open_graph.subtitle,
+      imageUrl: `${import.meta.env.VITE_AWS_S3_URL}/${data.images.thumbnail}`,
       link: window.location.href,
     });
   };
@@ -175,7 +173,7 @@ const TheSimple = () => {
   };
 
   const handleClickLiveWedding = () => {
-    window.open(sampleData.contents.live_url);
+    window.open(data.contents.live_url);
   };
 
   useEffect(() => {
@@ -215,54 +213,54 @@ const TheSimple = () => {
   return (
     <S.Container ref={containerRef}>
       <Helmet>
-        <title>{sampleData.open_graph.title}</title>
-        <meta name="description" content={`${sampleData.open_graph.title} 결혼합니다`} />
-        <meta property="og:title" content={sampleData.open_graph.title} />
-        <meta property="og:description" content={`${sampleData.open_graph.title} 결혼합니다`} />
+        <title>{data.open_graph.title}</title>
+        <meta name="description" content={data.open_graph.subtitle} />
+        <meta property="og:title" content={data.open_graph.title} />
+        <meta property="og:description" content={data.open_graph.subtitle} />
         <meta
           property="og:image"
           content="https://images.velog.io/images/anjoy/post/7886527b-8b11-4ccc-a90f-012aeb196297/image.png"
         />
         <meta property="og:url" content="페이지 URL" />
       </Helmet>
-      <Bgm audioNumber={sampleData.contents.bgm} />
+      <Bgm audioNumber={data.contents.bgm} />
       <S.MainWrapper ref={addItemRef} className="observer">
         <div className="date">
           <div className="date-yymmdd">
-            <span>{getYear(new Date(sampleData.date))}</span>
-            <span>{getMonth(new Date(sampleData.date))}</span>
-            <span>{getDate(new Date(sampleData.date))}</span>
+            <span>{getYear(new Date(data.date))}</span>
+            <span>{getMonth(new Date(data.date))}</span>
+            <span>{getDate(new Date(data.date))}</span>
           </div>
           <div className="date-day">
-            <span>{getDayEng(new Date(sampleData.date))}</span>
+            <span>{getDayEng(new Date(data.date))}</span>
           </div>
         </div>
         <div className="main-image">
-          <img src="/img1.jpg" />
+          <img src={`${import.meta.env.VITE_AWS_S3_URL}/${data.images.main}`} />
           <div className="background-video">
             <video muted autoPlay loop playsInline>
-              <source src={Effects[sampleData.contents.effect - 1]} type="video/mp4" />
+              <source src={Effects[data.contents.effect - 1]} type="video/mp4" />
             </video>
           </div>
         </div>
         <div className="wedding-info">
           <div className="wedding-info-name">
-            <span>{sampleData.HUSBAND.ME.name}</span>
+            <span>{data.HUSBAND.ME.name}</span>
             <div id="divider"></div>
-            <span>{sampleData.WIFE.ME.name}</span>
+            <span>{data.WIFE.ME.name}</span>
           </div>
           <div className="wedding-info-date">
-            <span>{getFullDate(new Date(sampleData.date))}</span>
+            <span>{getFullDate(new Date(data.date))}</span>
           </div>
           <div className="wedding-info-hall">
-            <span>{sampleData.location.wedding_hall}</span>
+            <span>{data.location.wedding_hall}</span>
           </div>
         </div>
       </S.MainWrapper>
-      <S.GreetingWrapper ref={addItemRef} className="observer">
+      <S.GreetingWrapper ref={addItemRef} className="observer" $textAlign={data.welcome_align}>
         <img src="/Template/icon_flower.png" />
         <div className="text">
-          {sampleData.welcome.map(({ text, inline_style }, index) => (
+          {data.welcome.map(({ text, inline_style }, index) => (
             <p key={index}>{applyStyles(text, inline_style)}</p>
           ))}
         </div>
@@ -270,20 +268,20 @@ const TheSimple = () => {
       <S.HumanWrapper ref={addItemRef} className="observer">
         <div className="humanInfo">
           <p>
-            김장인
+            {data.HUSBAND.FATHER.name}
             <span className="dot">·</span>
-            박장모
-            <span className="relation">의 장남</span>
-            김신랑
+            {data.HUSBAND.MOTHER.name}
+            <span className="relation">의 {data.HUSBAND.relationship}</span>
+            {data.HUSBAND.ME.name}
           </p>
         </div>
         <div className="humanInfo">
           <p>
-            이사돈
+            {data.WIFE.FATHER.name}
             <span className="dot">·</span>
-            김사촌
-            <span className="relation">의 차녀</span>
-            이신부
+            {data.WIFE.MOTHER.name}
+            <span className="relation">의 {data.WIFE.relationship}</span>
+            {data.WIFE.ME.name}
           </p>
         </div>
         <button className="contact-button" onClick={handleClickContantModal}>
@@ -293,12 +291,12 @@ const TheSimple = () => {
       </S.HumanWrapper>
       <S.CalendarWrapper ref={addItemRef} className="observer">
         <div className="date">
-          <p className="yymmdd">{getDateWithDots(new Date(sampleData.date))}</p>
-          <p className="ddhhmm">{getDayWithTime(new Date(sampleData.date))}</p>
+          <p className="yymmdd">{getDateWithDots(new Date(data.date))}</p>
+          <p className="ddhhmm">{getDayWithTime(new Date(data.date))}</p>
         </div>
         <div className="calendar">
           <Calendar
-            value={new Date(sampleData.date)}
+            value={new Date(data.date)}
             formatDay={formatDay}
             calendarType="gregory"
             tileClassName={tileClassName}
@@ -306,14 +304,14 @@ const TheSimple = () => {
         </div>
         <div className="d-day">
           <p>
-            {sampleData.HUSBAND.ME.name} <FcLike /> {sampleData.WIFE.ME.name}의 결혼식이{" "}
-            {getDday(new Date(sampleData.date)) === 0 ? (
+            {data.HUSBAND.ME.name} <FcLike /> {data.WIFE.ME.name}의 결혼식이{" "}
+            {getDday(new Date(data.date)) === 0 ? (
               <>
                 <span>오늘</span>입니다.
               </>
             ) : (
               <>
-                <span>{getDday(new Date(sampleData.date))}일</span> 남았습니다.
+                <span>{getDday(new Date(data.date))}일</span> 남았습니다.
               </>
             )}
           </p>
@@ -325,11 +323,11 @@ const TheSimple = () => {
           <span className="kor">오시는 길</span>
         </div>
         <div className="subtitle">
-          <p className="wedding-hall">{sampleData.location.wedding_hall}</p>
-          <p className="address">{sampleData.location.address}</p>
+          <p className="wedding-hall">{data.location.wedding_hall}</p>
+          <p className="address">{data.location.address}</p>
         </div>
         <div className="roadmap">
-          {<LocationCard latitude={sampleData.location.latitude} longitude={sampleData.location.longitude} />}
+          {<LocationCard latitude={data.location.latitude} longitude={data.location.longitude} />}
           <div className="roadmap-nav" onClick={handleClickRoadMap}>
             <div id="naver">
               <img src="/Template/icon_navermap.png" />
@@ -355,7 +353,7 @@ const TheSimple = () => {
             <span>버스로 오시는길</span>
           </div>
           <div className="description">
-            {sampleData.bus.map(({ text, inline_style }, index) => (
+            {data.bus.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -368,7 +366,7 @@ const TheSimple = () => {
             <span>지하철로 오시는길</span>
           </div>
           <div className="description">
-            {sampleData.subway.map(({ text, inline_style }, index) => (
+            {data.subway.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -381,7 +379,7 @@ const TheSimple = () => {
             <span>자가용으로 오시는길</span>
           </div>
           <div className="description">
-            {sampleData.car.map(({ text, inline_style }, index) => (
+            {data.car.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -391,10 +389,10 @@ const TheSimple = () => {
             <div className="icon">
               <IoBalloonOutline size={30} color="#ab9da1" />
             </div>
-            <span>{sampleData.etc.transport_type}</span>
+            <span>{data.etc.transport_type}</span>
           </div>
           <div className="description">
-            {sampleData.etc.info.map(({ text, inline_style }, index) => (
+            {data.etc.info.map(({ text, inline_style }, index) => (
               <p key={index}>{applyStyles(text, inline_style)}</p>
             ))}
           </div>
@@ -411,14 +409,14 @@ const TheSimple = () => {
           ))}
         </div>
       </S.GalleryContainer>
-      {sampleData.contents.video_id && (
+      {data.contents.video_id && (
         <S.WeddingVideoContainer ref={addItemRef} className="observer">
           <div className="title">
             <span className="eng">WEDDING VIDEO</span>
             <span className="kor">웨딩 영상</span>
           </div>
           <YouTube
-            videoId={sampleData.contents.video_id}
+            videoId={data.contents.video_id}
             className="youtube"
             opts={{
               width: "100%",
@@ -430,7 +428,7 @@ const TheSimple = () => {
           />
         </S.WeddingVideoContainer>
       )}
-      {sampleData.contents.live_url && (
+      {data.contents.live_url && (
         <S.LiveWeddingContainer ref={addItemRef} className="observer">
           <div className="title">
             <span className="eng">LIVE WEDDING</span>
@@ -529,39 +527,39 @@ const TheSimple = () => {
               <div className="human husband">
                 <div className="grid">
                   <span className="who">신랑</span>
-                  <span>{sampleData.HUSBAND.ME.name}</span>
+                  <span>{data.HUSBAND.ME.name}</span>
                   <div className="icons">
-                    <a href={`tel:${sampleData.HUSBAND.ME.contact}`}>
+                    <a href={`tel:${data.HUSBAND.ME.contact}`}>
                       <BsTelephoneFill color="#8194d8" size={14} />
                     </a>
-                    <a href={`sms:${sampleData.HUSBAND.ME.contact}`}>
+                    <a href={`sms:${data.HUSBAND.ME.contact}`}>
                       <BsChatText color="#8194d8" size={14} />
                     </a>
                   </div>
                 </div>
-                {sampleData.HUSBAND.FATHER.contact && (
+                {data.HUSBAND.FATHER.contact && (
                   <div className="grid">
                     <span className="who">신랑 아버지</span>
-                    <span>{sampleData.HUSBAND.FATHER.name}</span>
+                    <span>{data.HUSBAND.FATHER.name}</span>
                     <div className="icons">
-                      <a href={`tel:${sampleData.HUSBAND.FATHER.contact}`}>
+                      <a href={`tel:${data.HUSBAND.FATHER.contact}`}>
                         <BsTelephoneFill color="#8194d8" size={14} />
                       </a>
-                      <a href={`sms:${sampleData.HUSBAND.FATHER.contact}`}>
+                      <a href={`sms:${data.HUSBAND.FATHER.contact}`}>
                         <BsChatText color="#8194d8" size={14} />
                       </a>
                     </div>
                   </div>
                 )}
-                {sampleData.HUSBAND.MOTHER.contact && (
+                {data.HUSBAND.MOTHER.contact && (
                   <div className="grid">
                     <span className="who">신랑 어머니</span>
-                    <span>{sampleData.HUSBAND.MOTHER.name}</span>
+                    <span>{data.HUSBAND.MOTHER.name}</span>
                     <div className="icons">
-                      <a href={`tel:${sampleData.HUSBAND.MOTHER.contact}`}>
+                      <a href={`tel:${data.HUSBAND.MOTHER.contact}`}>
                         <BsTelephoneFill color="#8194d8" size={14} />
                       </a>
-                      <a href={`sms:${sampleData.HUSBAND.MOTHER.contact}`}>
+                      <a href={`sms:${data.HUSBAND.MOTHER.contact}`}>
                         <BsChatText color="#8194d8" size={14} />
                       </a>
                     </div>
@@ -571,39 +569,39 @@ const TheSimple = () => {
               <div className="human wife">
                 <div className="grid">
                   <span className="who">신부</span>
-                  <span>{sampleData.WIFE.ME.name}</span>
+                  <span>{data.WIFE.ME.name}</span>
                   <div className="icons">
-                    <a href={`tel:${sampleData.HUSBAND.ME.contact}`}>
+                    <a href={`tel:${data.WIFE.ME.contact}`}>
                       <BsTelephoneFill color="#ce7373" size={14} />
                     </a>
-                    <a href={`sms:${sampleData.HUSBAND.ME.contact}`}>
+                    <a href={`sms:${data.WIFE.ME.contact}`}>
                       <BsChatText color="#ce7373" size={14} />
                     </a>
                   </div>
                 </div>
-                {sampleData.WIFE.FATHER.contact && (
+                {data.WIFE.FATHER.contact && (
                   <div className="grid">
                     <span className="who">신부 아버지</span>
-                    <span>{sampleData.HUSBAND.FATHER.name}</span>
+                    <span>{data.WIFE.FATHER.name}</span>
                     <div className="icons">
-                      <a href={`tel:${sampleData.HUSBAND.FATHER.contact}`}>
+                      <a href={`tel:${data.WIFE.FATHER.contact}`}>
                         <BsTelephoneFill color="#ce7373" size={14} />
                       </a>
-                      <a href={`sms:${sampleData.HUSBAND.FATHER.contact}`}>
+                      <a href={`sms:${data.WIFE.FATHER.contact}`}>
                         <BsChatText color="#ce7373" size={14} />
                       </a>
                     </div>
                   </div>
                 )}
-                {sampleData.WIFE.MOTHER.contact && (
+                {data.WIFE.MOTHER.contact && (
                   <div className="grid">
                     <span className="who">신부 어머니</span>
-                    <span>{sampleData.HUSBAND.MOTHER.name}</span>
+                    <span>{data.WIFE.MOTHER.name}</span>
                     <div className="icons">
-                      <a href={`tel:${sampleData.HUSBAND.MOTHER.contact}`}>
+                      <a href={`tel:${data.WIFE.MOTHER.contact}`}>
                         <BsTelephoneFill color="#ce7373" size={14} />
                       </a>
-                      <a href={`sms:${sampleData.HUSBAND.MOTHER.contact}`}>
+                      <a href={`sms:${data.WIFE.MOTHER.contact}`}>
                         <BsChatText color="#ce7373" size={14} />
                       </a>
                     </div>
@@ -621,46 +619,40 @@ const TheSimple = () => {
               <div className="title">
                 <h2>신랑측 계좌번호</h2>
               </div>
-              {sampleData.HUSBAND.FATHER.account && (
+              {data.HUSBAND.FATHER.account && (
                 <div className="inner">
                   <div className="bank-account">
-                    <span className="bank">{sampleData.HUSBAND.FATHER.bank}</span>
-                    <span>{sampleData.HUSBAND.FATHER.account}</span>
+                    <span className="bank">{data.HUSBAND.FATHER.bank}</span>
+                    <span>{data.HUSBAND.FATHER.account}</span>
                   </div>
-                  <div className="name">(부) {sampleData.HUSBAND.FATHER.name}</div>
-                  <button
-                    className="copy-button"
-                    onClick={() => handleClickCopyAccount(sampleData.HUSBAND.FATHER.account)}
-                  >
+                  <div className="name">(부) {data.HUSBAND.FATHER.name}</div>
+                  <button className="copy-button" onClick={() => handleClickCopyAccount(data.HUSBAND.FATHER.account)}>
                     <IoCopyOutline size={12} />
                     복사
                   </button>
                 </div>
               )}
-              {sampleData.HUSBAND.MOTHER.account && (
+              {data.HUSBAND.MOTHER.account && (
                 <div className="inner">
                   <div className="bank-account">
-                    <span className="bank">{sampleData.HUSBAND.MOTHER.bank}</span>
-                    <span>{sampleData.HUSBAND.MOTHER.account}</span>
+                    <span className="bank">{data.HUSBAND.MOTHER.bank}</span>
+                    <span>{data.HUSBAND.MOTHER.account}</span>
                   </div>
-                  <div className="name">(모) {sampleData.HUSBAND.MOTHER.name}</div>
-                  <button
-                    className="copy-button"
-                    onClick={() => handleClickCopyAccount(sampleData.HUSBAND.MOTHER.account)}
-                  >
+                  <div className="name">(모) {data.HUSBAND.MOTHER.name}</div>
+                  <button className="copy-button" onClick={() => handleClickCopyAccount(data.HUSBAND.MOTHER.account)}>
                     <IoCopyOutline size={12} />
                     복사
                   </button>
                 </div>
               )}
-              {sampleData.HUSBAND.ME.account && (
+              {data.HUSBAND.ME.account && (
                 <div className="inner">
                   <div className="bank-account">
-                    <span className="bank">{sampleData.HUSBAND.ME.bank}</span>
-                    <span>{sampleData.HUSBAND.ME.account}</span>
+                    <span className="bank">{data.HUSBAND.ME.bank}</span>
+                    <span>{data.HUSBAND.ME.account}</span>
                   </div>
-                  <div className="name">{sampleData.HUSBAND.ME.name}</div>
-                  <button className="copy-button" onClick={() => handleClickCopyAccount(sampleData.HUSBAND.ME.account)}>
+                  <div className="name">{data.HUSBAND.ME.name}</div>
+                  <button className="copy-button" onClick={() => handleClickCopyAccount(data.HUSBAND.ME.account)}>
                     <IoCopyOutline size={12} />
                     복사
                   </button>
@@ -672,46 +664,40 @@ const TheSimple = () => {
               <div className="title">
                 <h2>신부측 계좌번호</h2>
               </div>
-              {sampleData.WIFE.FATHER.account && (
+              {data.WIFE.FATHER.account && (
                 <div className="inner">
                   <div className="bank-account">
-                    <span className="bank">{sampleData.WIFE.FATHER.bank}</span>
-                    <span>{sampleData.WIFE.FATHER.account}</span>
+                    <span className="bank">{data.WIFE.FATHER.bank}</span>
+                    <span>{data.WIFE.FATHER.account}</span>
                   </div>
-                  <div className="name">(부) {sampleData.WIFE.FATHER.name}</div>
-                  <button
-                    className="copy-button"
-                    onClick={() => handleClickCopyAccount(sampleData.WIFE.FATHER.account)}
-                  >
+                  <div className="name">(부) {data.WIFE.FATHER.name}</div>
+                  <button className="copy-button" onClick={() => handleClickCopyAccount(data.WIFE.FATHER.account)}>
                     <IoCopyOutline size={12} />
                     복사
                   </button>
                 </div>
               )}
-              {sampleData.WIFE.MOTHER.account && (
+              {data.WIFE.MOTHER.account && (
                 <div className="inner">
                   <div className="bank-account">
-                    <span className="bank">{sampleData.WIFE.MOTHER.bank}</span>
-                    <span>{sampleData.WIFE.MOTHER.account}</span>
+                    <span className="bank">{data.WIFE.MOTHER.bank}</span>
+                    <span>{data.WIFE.MOTHER.account}</span>
                   </div>
-                  <div className="name">(모) {sampleData.WIFE.MOTHER.name}</div>
-                  <button
-                    className="copy-button"
-                    onClick={() => handleClickCopyAccount(sampleData.WIFE.MOTHER.account)}
-                  >
+                  <div className="name">(모) {data.WIFE.MOTHER.name}</div>
+                  <button className="copy-button" onClick={() => handleClickCopyAccount(data.WIFE.MOTHER.account)}>
                     <IoCopyOutline size={12} />
                     복사
                   </button>
                 </div>
               )}
-              {sampleData.WIFE.ME.account && (
+              {data.WIFE.ME.account && (
                 <div className="inner">
                   <div className="bank-account">
-                    <span className="bank">{sampleData.WIFE.ME.bank}</span>
-                    <span>{sampleData.WIFE.ME.account}</span>
+                    <span className="bank">{data.WIFE.ME.bank}</span>
+                    <span>{data.WIFE.ME.account}</span>
                   </div>
-                  <div className="name">{sampleData.WIFE.ME.name}</div>
-                  <button className="copy-button" onClick={() => handleClickCopyAccount(sampleData.WIFE.ME.account)}>
+                  <div className="name">{data.WIFE.ME.name}</div>
+                  <button className="copy-button" onClick={() => handleClickCopyAccount(data.WIFE.ME.account)}>
                     <IoCopyOutline size={12} />
                     복사
                   </button>

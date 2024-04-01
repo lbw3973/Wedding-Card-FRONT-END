@@ -94,6 +94,15 @@ type TconcernedPersonType = "HUSBAND" | "WIFE";
 type TconcernedParentType = "FATHER" | "MOTHER" | "ME";
 type DraftTextAlignment = "left" | "center" | "right";
 
+interface IResInvitation extends IReqInvitationJSON {
+  template_id: number;
+  images: {
+    main: string;
+    thumbnail: string;
+    slides: string[];
+  };
+}
+
 export type {
   IReqInvitationJSON,
   IReqInvitationPhotos,
@@ -101,4 +110,5 @@ export type {
   TconcernedPersonType,
   TconcernedParentType,
   DraftTextAlignment,
+  IResInvitation,
 };

@@ -30,7 +30,6 @@ export const postInvitationData = async ({
   formData.append("json", new Blob([JSON.stringify(JsonData)], { type: "application/json" }));
 
   const uid = await getUserInfo();
-  console.log(uid);
 
   const res = await formInstance.post(`/save/${isTemp ? "temp" : "information"}`, formData, {
     headers: { uid: uid.id },

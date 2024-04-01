@@ -1,15 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import styled from "styled-components";
 
 export const Container = styled.div`
   text-align: center;
@@ -19,9 +8,19 @@ export const Container = styled.div`
   overflow: hidden;
   .observer {
     &.visible {
-      animation: ${fadeIn} 1.5s ease-out forwards;
+      animation: fadeIn 1.5s ease-out forwards;
     }
-    opacity: 0;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   }
 `;
 
@@ -112,7 +111,7 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export const GreetingWrapper = styled.div`
+export const GreetingWrapper = styled.div<{ $textAlign: string }>`
   padding: 40px 0;
 
   img {
@@ -121,9 +120,11 @@ export const GreetingWrapper = styled.div`
   }
 
   .text {
+    width: 65%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: ${({ $textAlign }) => ($textAlign === "left" ? "start" : $textAlign === "center" ? "center" : "end")};
     justify-content: center;
     gap: 24px;
     font-family: "GowunDodum", serif;
