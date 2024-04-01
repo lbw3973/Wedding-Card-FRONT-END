@@ -96,12 +96,11 @@ type DraftTextAlignment = "left" | "center" | "right";
 
 interface IResInvitation extends IReqInvitationJSON {
   template_id: number;
-  // images: {
-  //   main: string;
-  //   thumbnail: string;
-  //   slides: string[];
-  // };
-  images: string[];
+  images: {
+    main: string;
+    thumbnail: string;
+    slides: string[];
+  };
 }
 
 export type {

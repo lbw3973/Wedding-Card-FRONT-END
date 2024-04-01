@@ -135,7 +135,7 @@ const TheSimple = (data: IResInvitation) => {
     shareKakao({
       title: data.open_graph.title,
       description: data.open_graph.subtitle,
-      imageUrl: `${import.meta.env.VITE_AWS_S3_URL}/${data.images[1]}`,
+      imageUrl: `${import.meta.env.VITE_AWS_S3_URL}/${data.images.thumbnail}`,
       link: window.location.href,
     });
   };
@@ -236,7 +236,7 @@ const TheSimple = (data: IResInvitation) => {
           </div>
         </div>
         <div className="main-image">
-          <img src={`${import.meta.env.VITE_AWS_S3_URL}/${data.images[0]}`} />
+          <img src={`${import.meta.env.VITE_AWS_S3_URL}/${data.images.main}`} />
           <div className="background-video">
             <video muted autoPlay loop playsInline>
               <source src={Effects[data.contents.effect - 1]} type="video/mp4" />
@@ -404,8 +404,12 @@ const TheSimple = (data: IResInvitation) => {
           <span className="kor">갤러리</span>
         </div>
         <div className="grid">
-          {galleryImages.GalleryImages.map((src, index) => (
-            <img key={index} src={src} onClick={() => handleClickGalleryImage(index + 1)} />
+          {data.images.slides.map((src, index) => (
+            <img
+              key={index}
+              src={`${import.meta.env.VITE_AWS_S3_URL}/${src}`}
+              onClick={() => handleClickGalleryImage(index + 1)}
+            />
           ))}
         </div>
       </S.GalleryContainer>
