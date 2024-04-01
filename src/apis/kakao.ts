@@ -1,6 +1,7 @@
+import { IKakaoUserInfo } from "@/types/kakao";
 import { kakaoInstance } from "./axios";
 
-export const getUserInfo = async () => {
+export const getUserInfo = async (): Promise<IKakaoUserInfo> => {
   const res = await kakaoInstance.get("/v2/user/me");
   return res.data;
 };

@@ -1,6 +1,7 @@
 import { IReqInvitationJSON, IReqInvitationPhotos } from "@/types/invitation";
 import { formInstance, instance } from "./axios";
 import { getUserInfo } from "./kakao";
+import { encrypt } from "@/utils/crypto";
 
 export const postInvitationData = async ({
   JsonData,
@@ -30,15 +31,18 @@ export const postInvitationData = async ({
   formData.append("json", new Blob([JSON.stringify(JsonData)], { type: "application/json" }));
 
   const uid = await getUserInfo();
+  const crypto = encrypt(uid.id.toString());
 
   const res = await formInstance.post(`/save/${isTemp ? "temp" : "information"}`, formData, {
-    headers: { uid: uid.id },
+    headers: { uid: crypto },
   });
   return res;
 };
 
 export const testData = async ({ JsonData }: { JsonData: IReqInvitationJSON }) => {
-  const res = await instance.post("/test", JsonData);
+  const uid = await getUserInfo();
+  const crypto = encrypt(uid.id.toString());
+  const res = await instance.post("/test", JsonData, { headers: { uid: crypto } });
   return res;
 };
 
