@@ -32,19 +32,19 @@ const WeddingSchedule = () => {
   const setInvitationData = useSetRecoilState(invitationJSONState);
 
   const handleDateChange = (date: Date) => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
-    // console.log(date.toISOString().substring(0, 16));
+    // const year = date.getFullYear();
+    // const month = date.getMonth() + 1;
+    // const day = date.getDate();
+    // const hour = date.getHours();
+    // const minute = date.getMinutes();
+    // const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
+    console.log(date.toISOString().substring(0, 16));
     console.log(date.toLocaleString().split(" "));
-    const convertDate = `${year}-${month}-${day}-${dayOfWeek}-${hour}-${minute}`;
+    // const convertDate = `${year}-${month}-${day}-${dayOfWeek}-${hour}-${minute}`;
 
     setInvitationData(previousData => ({
       ...previousData,
-      date: convertDate,
+      date: date.toISOString().substring(0, 16),
     }));
 
     setWeddingDate(date);

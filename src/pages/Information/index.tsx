@@ -16,10 +16,11 @@ import NextStepButton from "@/components/Common/NextStepButton";
 import TempSaveButton from "@/components/Information/TempSaveButton";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { postData, testData } from "@/apis/server";
+import { postInvitationData, testData } from "@/apis/server";
 import { useRecoilValue } from "recoil";
 import { invitationJSONState } from "@/stores/createInvitationJSONStore";
 import { invitationPhotosState } from "@/stores/createInvitationPhotosStore";
+// import { useMutation } from "@tanstack/react-query";
 
 const Information = () => {
   const createInvitationData = useRecoilValue(invitationJSONState);
@@ -27,6 +28,7 @@ const Information = () => {
 
   const navigate = useNavigate();
 
+  // const mutation = useMutation({ mutationKey: ["postInvitationData"], mutationFn: postInvitationData });
   const preventClose = (e: BeforeUnloadEvent) => {
     e.preventDefault();
     e.returnValue = "";
@@ -41,7 +43,7 @@ const Information = () => {
   }, []);
 
   const handleClickLeft = async () => {
-    const res = await postData({
+    const res = await postInvitationData({
       JsonData: createInvitationData,
       Images: createInvitationPhotos,
       isTemp: true,
@@ -51,7 +53,12 @@ const Information = () => {
   };
 
   const handleClickRight = async () => {
-    const res = await postData({
+    // mutation.mutate({
+    //   JsonData: createInvitationData,
+    //   Images: createInvitationPhotos,
+    //   isTemp: false,
+    // });
+    const res = await postInvitationData({
       JsonData: createInvitationData,
       Images: createInvitationPhotos,
       isTemp: false,

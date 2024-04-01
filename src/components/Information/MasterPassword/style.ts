@@ -60,9 +60,6 @@ export const Wrapper = styled.div<{ $isValid: boolean }>`
       transform: translateY(-50%);
       right: -15px;
       padding-top: 2px;
-      &:hover {
-        background-color: #dcdcdc;
-      }
     }
   }
   p {

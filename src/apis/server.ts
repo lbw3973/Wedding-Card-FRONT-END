@@ -2,7 +2,7 @@ import { IReqInvitationJSON, IReqInvitationPhotos } from "@/types/invitation";
 import { formInstance, instance } from "./axios";
 import { getUserInfo } from "./kakao";
 
-export const postData = async ({
+export const postInvitationData = async ({
   JsonData,
   Images,
   isTemp,
@@ -28,6 +28,7 @@ export const postData = async ({
   }
 
   formData.append("json", new Blob([JSON.stringify(JsonData)], { type: "application/json" }));
+
   const uid = await getUserInfo();
   console.log(uid);
 
@@ -40,4 +41,9 @@ export const postData = async ({
 export const testData = async ({ JsonData }: { JsonData: IReqInvitationJSON }) => {
   const res = await instance.post("/test", JsonData);
   return res;
+};
+
+export const getInvitationData = async (uid: string) => {
+  const res = await instance.get("/inquiry", { headers: { Uid: uid } });
+  return res.data;
 };
