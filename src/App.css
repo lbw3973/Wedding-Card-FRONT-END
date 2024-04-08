@@ -66,6 +66,10 @@ em {
   font-style: italic !important;
 }
 
+.react-calendar__tile--now abbr {
+  color: #242424 !important;
+}
+
 @font-face {
   font-family: "Pretendard";
   font-style: normal;
@@ -90,6 +94,13 @@ em {
 @font-face {
   font-family: 'GowunDodum';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SunBatang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/SunBatang-Light.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

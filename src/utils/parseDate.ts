@@ -6,6 +6,15 @@ export const getMonth = (date: Date) => {
   return date.getMonth() + 1;
 };
 
+export const getMonthWithZero = (date: Date) => {
+  const month = date.getMonth() + 1;
+  if (month < 10) {
+    return `0${month}`;
+  } else {
+    return month;
+  }
+};
+
 export const getDate = (date: Date) => {
   return date.getDate();
 };
@@ -35,6 +44,14 @@ export const getDateWithDots = (date: Date) => {
   const day = date.getDate();
 
   return `${year}.${month}.${day}`;
+};
+
+export const getDateWithKor = (date: Date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${year}년 ${month}월 ${day}일`;
 };
 
 export const getDateMonthDay = (date: Date) => {

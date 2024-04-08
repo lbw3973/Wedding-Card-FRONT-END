@@ -5,8 +5,9 @@ import { HelmetProvider } from "react-helmet-async";
 import TheSimple from "@/Templates/TheSimple";
 import Modern from "@/Templates/Modern";
 import { useGetInvitationData } from "@/hooks/useGetInvitationData";
+import Start from "@/Templates/Start";
 
-type temp_template = "modern" | "thesimple";
+type temp_template = "modern" | "thesimple" | "start";
 
 const templates = {
   modern: {
@@ -17,12 +18,15 @@ const templates = {
     component: TheSimple,
     id: 1,
   },
+  start: {
+    component: Start,
+    id: 2,
+  },
 };
 
 const Letter = () => {
   const { id } = useParams();
   const { invitationData, isLoading } = useGetInvitationData(id as string);
-  console.log(invitationData);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -40,11 +44,12 @@ const Letter = () => {
 
   const renderTheme = () => {
     if (isLoading) {
+      // 로딩 UI도 하나 뽑자
       return <div>Loading...</div>;
     }
 
     if (invitationData) {
-      invitationData.template_id = 1;
+      invitationData.template_id = 2;
       const templateKey = Object.keys(templates).find(
         key => templates[key as temp_template].id === invitationData.template_id,
       );
