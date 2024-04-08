@@ -28,7 +28,8 @@ function Router() {
           </Route>
           <Route path="/modify/information" element={<ModifyInformation />} />
         </Route>
-        <Route path="/u/:id" element={<Letter />} />
+        {/* <Route path="/u/:id" element={<Letter />} /> */}
+        <Route path="/u/:id/:template" element={<Letter />} />
       </Routes>
     </BrowserRouter>
   );

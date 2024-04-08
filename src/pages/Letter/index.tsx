@@ -25,7 +25,7 @@ const templates = {
 };
 
 const Letter = () => {
-  const { id } = useParams();
+  const { id, template } = useParams();
   const { invitationData, isLoading } = useGetInvitationData(id as string);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Letter = () => {
     }
 
     if (invitationData) {
-      invitationData.template_id = 1;
+      invitationData.template_id = Number(template);
       const templateKey = Object.keys(templates).find(
         key => templates[key as temp_template].id === invitationData.template_id,
       );
