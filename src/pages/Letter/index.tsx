@@ -49,7 +49,7 @@ const Letter = () => {
     }
 
     if (invitationData) {
-      invitationData.template_id = 2;
+      invitationData.template_id = 1;
       const templateKey = Object.keys(templates).find(
         key => templates[key as temp_template].id === invitationData.template_id,
       );
