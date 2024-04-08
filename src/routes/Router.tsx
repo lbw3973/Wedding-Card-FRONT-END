@@ -27,7 +27,6 @@ function Router() {
             <Route path="/search/:word" element={<Search />} />
           </Route>
           <Route path="/modify/information" element={<ModifyInformation />} />
-          {/* <Route path="/modify/information" element={<ModifyInformation />} /> */}
         </Route>
         <Route path="/u/:id" element={<Letter />} />
       </Routes>

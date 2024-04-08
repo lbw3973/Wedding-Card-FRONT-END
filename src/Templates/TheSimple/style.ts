@@ -111,14 +111,46 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export const GreetingWrapper = styled.div<{ $textAlign: string }>`
+export const PhraseWrapper = styled.div`
   padding: 40px 0;
+  .text {
+    width: 65%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    font-family: "GowunDodum", serif;
+    color: #544f4f;
+  }
 
   img {
     width: 25px;
     margin-bottom: 20px;
   }
+`;
 
+export const GreetingWrapper = styled.div<{ $textAlign: string }>`
+  padding: 40px 0;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    .eng {
+      font-family: "CrimsonPro";
+      letter-spacing: 3px;
+      color: #c2b2b2;
+    }
+    .kor {
+      font-family: "GowunDodum", serif;
+      font-size: 20px;
+      color: #89757a;
+    }
+  }
   .text {
     width: 65%;
     margin: 0 auto;

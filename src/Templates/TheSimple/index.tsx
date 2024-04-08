@@ -39,6 +39,7 @@ import { copyLink } from "@/utils/copyLink";
 import YouTube from "react-youtube";
 import { Effects } from "@/constants/ContentsData";
 import { IResInvitation } from "@/types/invitation";
+import Phrase from "@/constants/Phrase.json";
 window.YTConfig = {
   host: "https://www.youtube.com",
 };
@@ -257,8 +258,19 @@ const TheSimple = (data: IResInvitation) => {
           </div>
         </div>
       </S.MainWrapper>
-      <S.GreetingWrapper ref={addItemRef} className="observer" $textAlign={data.welcome_align}>
+      <S.PhraseWrapper ref={addItemRef} className="observer">
         <img src="/Template/icon_flower.png" />
+        <div className="text">
+          {Phrase.phrase.map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
+        </div>
+      </S.PhraseWrapper>
+      <S.GreetingWrapper ref={addItemRef} className="observer" $textAlign={data.welcome_align}>
+        <div className="title">
+          <span className="eng">INVITATION</span>
+          <span className="kor">초대합니다</span>
+        </div>
         <div className="text">
           {data.welcome.map(({ text, inline_style }, index) => (
             <p key={index}>{applyStyles(text, inline_style)}</p>
