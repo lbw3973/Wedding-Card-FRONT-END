@@ -21,7 +21,7 @@ const SwiperModal = ({
         <Swiper initialSlide={curSwiperImageIndex - 1} onSwiper={setSwiper}>
           {images.map((image, index) => (
             <SwiperSlide key={index}>
-              <img src={image} alt={`슬라이드 이미지_${index + 1}`} />
+              <img src={`${import.meta.env.VITE_AWS_S3_URL}/${image}`} alt={`슬라이드 이미지_${index + 1}`} />
             </SwiperSlide>
           ))}
         </Swiper>

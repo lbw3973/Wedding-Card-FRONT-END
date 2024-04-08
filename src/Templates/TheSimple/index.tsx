@@ -13,7 +13,6 @@ import { TbMailHeart } from "react-icons/tb";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { HiOutlineLink } from "react-icons/hi";
 import guestBook from "@/mock/GuestBook.json";
-import galleryImages from "@/mock/GalleryImages.json";
 import { FcLike } from "react-icons/fc";
 import {
   formatDay,
@@ -774,7 +773,7 @@ const TheSimple = (data: IResInvitation) => {
       )}
       {curSwiperImageIndex ? (
         <SwiperModal
-          images={galleryImages.GalleryImages}
+          images={data.images.slides}
           curSwiperImageIndex={curSwiperImageIndex}
           setCurSwiperImageIndex={setCurSwiperImageIndex}
         />
