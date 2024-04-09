@@ -24,7 +24,7 @@ const MyInvitation = () => {
         </div>
         <div className="iframe-container">
           <img src="/Template/iphone_frame.png" />
-          <iframe id="preview" src="http://localhost:5173/u/thesimple" onLoad={() => setIsIframeLoading(true)}></iframe>
+          <iframe id="preview" src="http://localhost:5173/u/sample-modern/2" onLoad={() => setIsIframeLoading(true)}></iframe>
           {!isIframeLoading && <LoadingUI />}
         </div>
         <div className="button-container">

@@ -48,9 +48,14 @@ export const InvitationWrapper = styled.div`
   .iframe-container {
     margin: 0 auto;
     padding: 10px;
-    max-width: 338px;
+    max-width: 400px;
     width: 100%;
     position: relative;
+
+    @media ${({ theme }) => theme.windowSize.sm} {
+      max-width: 338px;
+    }
+
     img {
       width: 100%;
     }
