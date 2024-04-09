@@ -6,6 +6,7 @@ import TheSimple from "@/Templates/TheSimple";
 import Modern from "@/Templates/Modern";
 import { useGetInvitationData } from "@/hooks/useGetInvitationData";
 import Start from "@/Templates/Start";
+import CherryBlossom from "@/Templates/CherryBlossom";
 
 type temp_template = "modern" | "thesimple" | "start";
 
@@ -21,6 +22,10 @@ const templates = {
   start: {
     component: Start,
     id: 2,
+  },
+  cherryblossom: {
+    component: CherryBlossom,
+    id: 3,
   },
 };
 
