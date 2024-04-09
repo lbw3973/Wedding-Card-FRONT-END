@@ -20,7 +20,7 @@ const Bgm = ({ audioNumber }: { audioNumber: number }) => {
   const handleClickAudio = () => {
     setIsAudioPlay(!isAudioPlay);
   };
-
+  if (audioNumber === 0) return null;
   return (
     <S.AudioWrapper>
       <audio src={Audios[audioNumber - 1]} ref={audioRef} />
