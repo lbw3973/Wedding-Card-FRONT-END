@@ -46,7 +46,7 @@ window.YTConfig = {
   host: "https://www.youtube.com",
 };
 
-const TheSimple = (data: IResInvitation) => {
+const Start = (data: IResInvitation) => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [currentGuestBookPage, setCurrentGuestBookPage] = useState(1);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
@@ -333,7 +333,7 @@ const TheSimple = (data: IResInvitation) => {
           <span className="eng">GALLERY</span>
         </div>
         <div className="slides">
-          <Swiper autoHeight pagination modules={[Pagination]}>
+          <Swiper pagination modules={[Pagination]}>
             {data.images.slides.map((src, index) => (
               <SwiperSlide key={index}>
                 <img src={`${import.meta.env.VITE_AWS_S3_URL}/${src}`} />
@@ -749,4 +749,4 @@ const TheSimple = (data: IResInvitation) => {
   );
 };
 
-export default TheSimple;
+export default Start;
