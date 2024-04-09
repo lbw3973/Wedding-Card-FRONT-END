@@ -982,7 +982,7 @@ export const DeleteModalContainer = styled.div`
     }
     .delete-button {
       padding: 20px 0;
-      background-color: #d0b9b9;
+      background-color: #f1bfc0;
       width: 100%;
       border-radius: 0 0 6px 6px;
       color: #fff;
