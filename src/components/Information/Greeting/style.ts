@@ -143,4 +143,6 @@ export const EditorContainer = styled.div`
   font-size: 18px;
   border: 1px solid #acacac;
   border-radius: 0px 0px 4px 4px !important;
+  overflow-y: scroll;
+  line-height: 1.3;
 `;

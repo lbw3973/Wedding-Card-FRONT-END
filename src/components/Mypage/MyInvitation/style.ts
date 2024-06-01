@@ -62,8 +62,12 @@ export const InvitationWrapper = styled.div`
     #preview {
       margin-top: -3px;
       width: 100%;
-      height: 600px;
+      height: 700px;
       border-radius: 0 0 0 24px;
+
+      @media ${({ theme }) => theme.windowSize.sm} {
+        height: 600px;
+      }
     }
   }
   .button-container {

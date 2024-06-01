@@ -68,10 +68,7 @@ const Information = () => {
 
   const handleClickTempSave = async () => {
     console.log(createInvitationData, createInvitationPhotos);
-    // console.log(createInvitationData, invitationPhotos);
-    const res = await testData({
-      JsonData: createInvitationData,
-    });
+    const res = await testData();
     console.log(res);
   };
 
